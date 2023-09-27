@@ -113,7 +113,7 @@ public class DoctorService {
         if(d1.getDoctorSpeciality().equals(d2.getDoctorSpeciality()) &&
         d1.getName().equals(d2.getName()) && d1.getEmail().equals(d2.getEmail()) &&
         d1.getDoctorCity().equals(d2.getDoctorCity()) &&
-        d2.getPhoneNumber().equals(d2.getPhoneNumber()))
+        d1.getPhoneNumber().equals(d2.getPhoneNumber()))
             return true;
 
         return false;
