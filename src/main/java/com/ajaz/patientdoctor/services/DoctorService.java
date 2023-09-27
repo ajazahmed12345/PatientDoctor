@@ -24,6 +24,20 @@ public class DoctorService {
     }
 
     public Doctor createDoctor(Doctor doctor){
+        boolean alreadyExists = false;
+
+        List<Doctor> doctors = doctorRepository.findAll();
+
+        for(Doctor d : doctors){
+            if(isSame(d, doctor)){
+                alreadyExists = true;
+            }
+        }
+
+        if(alreadyExists){
+            return null;
+        }
+
         return doctorRepository.save(doctor);
     }
 
@@ -93,6 +107,16 @@ public class DoctorService {
 
 
 //        return null;
+    }
+
+    boolean isSame(Doctor d1, Doctor d2){
+        if(d1.getDoctorSpeciality().equals(d2.getDoctorSpeciality()) &&
+        d1.getName().equals(d2.getName()) && d1.getEmail().equals(d2.getEmail()) &&
+        d1.getDoctorCity().equals(d2.getDoctorCity()) &&
+        d2.getPhoneNumber().equals(d2.getPhoneNumber()))
+            return true;
+
+        return false;
     }
 
     public DoctorCity convertDoctorCityFromStringToEnum(String city){

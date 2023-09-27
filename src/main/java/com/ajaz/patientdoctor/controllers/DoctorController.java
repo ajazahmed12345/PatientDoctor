@@ -19,6 +19,12 @@ public class DoctorController {
     @PostMapping()
     public ResponseEntity<String> createDoctor(@RequestBody Doctor doctor){
         Doctor savedDoctor = doctorService.createDoctor(doctor);
+
+        if(savedDoctor == null){
+            return new ResponseEntity<>("Doctor with provided details already exists in the DB", HttpStatus.OK);
+        }
+
+
         return new ResponseEntity<>("Doctor created with id = " + savedDoctor.getId(), HttpStatus.CREATED);
     }
 
